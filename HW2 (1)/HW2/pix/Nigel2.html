@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Yahtzee </title>
+    <style type="text/css">
+        h1 { text-align: center; }
+        div.center { text-align: center; }
+        table.t { margin-left: auto; margin-right: auto; }
+        button.b { color: #F5E6E3; background-color: #5F00CA; margin-right: 20px; }
+        td.center { text-align: center; }
+        td.button { border: 2px #efefef inset; background-color: #AEAFFF; width: 2em; }
+    </style>
+</head>
+
+<body>
+    <script language="JavaScript">
+
+        var v = new Array(5);
+        var held = new Array(5).fill(false);
+
+        function roll() {
+            for (var i = 0; i < 5; i++) {
+                if (!held[i]) {
+                    var d = document.getElementById("d" + i);
+                    v[i] = Math.floor(6 * Math.random()) + 1;
+                    d.src = "pix/dice" + v[i] + ".gif";
+                }
+            }
+        }
+
+        function h(i) {
+            var d = document.getElementById("d" + i);
+            held[i] = !held[i];
+            if (held[i]) {
+                d.src = "pix/diceX" + v[i] + ".gif";
+            } else {
+                d.src = "pix/dice" + v[i] + ".gif";
+            }
+        }
+    </script>
+    <h1> Yahtzee </h1>
+    <div class="center"> 
+        <img id="d0" onClick="h(0)" src="pix/dice0.gif">
+        <img id="d1" onClick="h(1)" src="pix/dice0.gif">
+        <img id="d2" onClick="h(2)" src="pix/dice0.gif">
+        <img id="d3" onClick="h(3)" src="pix/dice0.gif">
+        <img id="d4" onClick="h(4)" src="pix/dice0.gif">
+        <button class="b" onClick="roll()">Roll</button>
+    </div>
+    <table class="t">
+        <tr>
+            <td> 1's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 2's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 3's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 4's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 5's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 6's </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 3 of a kind </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> 4 of a kind </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> Yahtzee </td> 
+            <td class="button"></td>
+        </tr>
+        <tr>
+            <td> Total </td> 
+            <td></td>
+        </tr>
+    </table>
+
+    
+</body>
+</html>
